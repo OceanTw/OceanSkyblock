@@ -1,0 +1,25 @@
+pets:
+  # An example pet from a big server
+  ROCK-COMMON: # This can be anything you want, but it must be different from other pets
+    name: "Rock" # The display name of the pet
+    category: "MINING" # The category of the pet (COMBAT, MINING, FARMING, FORAGING, FISHING)
+    rarity: "COMMON" # The rarity of the pet (Customizable in the config)
+    skin-owner: "Rock" # The owner of the skin of the pet
+    stats:
+      default: # For level 1 pets
+      health: 0
+      defense: 0
+      strength: 0
+      crit_chance: 0
+      crit_damage: 0
+      intelligence: 0
+      speed: 0
+    stats_bonus: # Stats added for each level
+      health: 0
+      defense: 2
+      strength: 0
+      crit_chance: 0
+      crit_damage: 0
+      intelligence: 0
+      speed: 0
+

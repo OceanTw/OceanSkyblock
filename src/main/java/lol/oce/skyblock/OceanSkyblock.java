@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
 public class OceanSkyblock extends JavaPlugin {
 
     private static OceanSkyblock instance;

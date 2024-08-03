@@ -42,6 +42,9 @@ public class PetManager {
         armorStand.setVisible(false);
         armorStand.setGravity(false);
         armorStand.setHelmet(getSkull(pet.getSkinOwner()));
+        armorStand.setBasePlate(false);
+        armorStand.setArms(false);
+        armorStand.setSmall(true);
 
         SPlayer sPlayer = getSPlayer(player);
         sPlayer.getData().setSpawnedPet(pet);
@@ -50,7 +53,7 @@ public class PetManager {
     }
 
     private ItemStack getSkull(String owner) {
-        ItemStack skull = new ItemStack(Material.SKULL_ITEM);
+        ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
         meta.setOwner(owner);
         skull.setItemMeta(meta);

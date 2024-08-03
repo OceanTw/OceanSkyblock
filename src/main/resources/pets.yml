@@ -4,7 +4,7 @@ pets:
     name: "Rock" # The display name of the pet
     category: "MINING" # The category of the pet (COMBAT, MINING, FARMING, FORAGING, FISHING)
     rarity: "COMMON" # The rarity of the pet (Customizable in the config)
-    skin-owner: "Rock" # The owner of the skin of the pet
+    skin-owner: "Stone" # The owner of the skin of the pet
     stats: # Base stats of the pet
       health: 0
       defense: 0

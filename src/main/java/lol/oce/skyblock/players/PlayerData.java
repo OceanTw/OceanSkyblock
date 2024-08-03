@@ -3,6 +3,8 @@ package lol.oce.skyblock.players;
 import lol.oce.skyblock.pets.Pet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -15,4 +17,5 @@ public class PlayerData {
     private final List<ItemStack> itemStash;
     private final Stats stats;
     private final List<Pet> pets;
+    private Pet spawnedPet;
 }

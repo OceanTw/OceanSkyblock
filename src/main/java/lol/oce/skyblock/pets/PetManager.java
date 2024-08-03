@@ -1,7 +1,7 @@
 package lol.oce.skyblock.pets;
 
 import lol.oce.skyblock.OceanSkyblock;
-import lol.oce.skyblock.configs.ConfigManager;
+import lol.oce.skyblock.Skyblock;
 import org.bukkit.configuration.Configuration;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PetManager {
 
-    List<Pets> pets = new ArrayList<>();
+    List<Pet> pets = Skyblock.get().getPets();
 
     public void load() {
         // Load pets from config
@@ -28,7 +28,7 @@ public class PetManager {
             );
             String skinOwner = petsFile.getString(key + ".skinOwner");
 
-            pets.add(new Pets(name, category, stats, skinOwner));
+            pets.add(new Pet(name, category, stats, skinOwner));
         }
     }
 }

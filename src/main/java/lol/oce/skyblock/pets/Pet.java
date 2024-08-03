@@ -5,7 +5,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class Pets {
+public class Pet {
 
     private final String name;
     private final String category;

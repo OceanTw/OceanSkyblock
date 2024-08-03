@@ -16,6 +16,7 @@ public class ConfigManager {
     private ConfigFile reforgesFile;
     private ConfigFile petsFile;
     private ConfigFile itemsFile;
+    private ConfigFile dataFile;
 
 
     public ConfigManager() {
@@ -30,5 +31,6 @@ public class ConfigManager {
         this.reforgesFile = new ConfigFile("reforges");
         this.petsFile = new ConfigFile("pets");
         this.itemsFile = new ConfigFile("items");
+        this.dataFile = new ConfigFile("data");
     }
 }

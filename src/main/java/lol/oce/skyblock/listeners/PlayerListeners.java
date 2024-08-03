@@ -1,7 +1,8 @@
 package lol.oce.skyblock.listeners;
 
 import lol.oce.skyblock.OceanSkyblock;
-import lol.oce.skyblock.players.ItemStash;
+import lol.oce.skyblock.Skyblock;
+import lol.oce.skyblock.players.PlayerData;
 import lol.oce.skyblock.players.SPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,13 +14,14 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        SPlayer sPlayer = new SPlayer(player.getName(), new ItemStash());
-        OceanSkyblock.get().getPlayers().put(player.getUniqueId(), sPlayer);
+        // TODO: Check if the player exists in the database and load their data from it, otherwise create default
+        SPlayer sPlayer = SPlayer.createDefault(player.getName());
+        Skyblock.get().getPlayers().put(player.getUniqueId(), sPlayer);
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        OceanSkyblock.get().getPlayers().remove(player.getUniqueId());
+        Skyblock.get().getPlayers().remove(player.getUniqueId());
     }
 }

@@ -1,0 +1,7 @@
+rarities:
+  COMMON: "&f&lCOMMON"
+  UNCOMMON: "&a&lUNCOMMON"
+  RARE: "&9&lRARE"
+  EPIC: "&5&lEPIC"
+  LEGENDARY: "&6&lLEGENDARY"
+  MYTHIC: "&d&lMYTHIC"

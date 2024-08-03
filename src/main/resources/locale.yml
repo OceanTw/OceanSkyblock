@@ -1,0 +1,2 @@
+pets:
+  nametag-format: "&8[&7Lv{level}&8] {name}"

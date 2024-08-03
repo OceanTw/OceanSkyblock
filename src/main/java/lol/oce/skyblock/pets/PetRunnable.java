@@ -33,7 +33,7 @@ public class PetRunnable extends BukkitRunnable {
             double dy = playerLocation.getY() - petLocation.getY();
             double dz = playerLocation.getZ() - petLocation.getZ();
 
-            double speed = 1; // Adjusted speed for smoother movement
+            double speed = 1;
             double step = speed / distance;
 
             double newX = petLocation.getX() + dx * step;

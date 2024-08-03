@@ -10,8 +10,10 @@ This plugin is not done yet, if you want to join the development, DM "oceaning" 
 - ItemStashes
 - Stats (Strength, Speed etc.)
 
-## Planned Features
+## Work in progress
 - Pets
+
+## Planned Features
 - Custom items
 - Reforges
 - Custom menus (Anvil, Enchants

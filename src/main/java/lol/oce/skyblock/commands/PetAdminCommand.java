@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 public class PetAdminCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        // check if the command sender has the permission "skyblock.admin", if he does then send a help message containing "/pet list", "/pet give <player> <pet>", "/pet remove <player> <pet>"
         SPlayer sPlayer = Skyblock.get().getPlayers().get(Bukkit.getPlayer(commandSender.getName()).getUniqueId());
         if (!commandSender.hasPermission("skyblock.admin")) {
             commandSender.sendMessage(CC.color("&cYou do not have permission to use this command!"));

@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 public class PickupCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        // give the player the items in their itemstash
         Player player = (Player) commandSender;
         SPlayer sPlayer = Skyblock.get().getPlayers().get(player.getUniqueId());
         if (sPlayer.getData().getItemStash().isEmpty()) {

@@ -12,7 +12,7 @@ public class DamageListeners implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        // auto pick up
+
         if (event.getEntity().getKiller() == null) return;
         Player player = event.getEntity().getKiller();
         if (player.getInventory().firstEmpty() == -1) {

@@ -1,3 +1,6 @@
 name: OceanSkyblock
 version: '${project.version}'
 main: lol.oce.skyblock.OceanSkyblock
+commands:
+  pet:
+  petadmin:

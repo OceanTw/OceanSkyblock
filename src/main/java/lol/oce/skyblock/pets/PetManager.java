@@ -6,6 +6,7 @@ import lol.oce.skyblock.players.SPlayer;
 import lol.oce.skyblock.rarity.Rarity;
 import lol.oce.skyblock.utils.CC;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.ArmorStand;
@@ -13,12 +14,13 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
 public class PetManager {
 
-    List<Pet> pets = Skyblock.get().getPets();
+    private final List<Pet> pets = Skyblock.get().getPets();
 
     public void load() {
         Configuration petsFile = OceanSkyblock.get().getConfigManager().getPetsFile().getConfiguration();
@@ -37,7 +39,7 @@ public class PetManager {
             );
             String skinOwner = petsFile.getString("pets." + key + ".skin-owner");
 
-            pets.add(new Pet(name, category, stats, skinOwner, rarity));
+            pets.add(new Pet(key, name, category, stats, skinOwner, rarity));
         }
     }
 
@@ -49,17 +51,68 @@ public class PetManager {
         armorStand.setBasePlate(false);
         armorStand.setArms(false);
         armorStand.setSmall(true);
+        armorStand.setRemoveWhenFarAway(false);
 
         SPlayer sPlayer = getSPlayer(player);
         sPlayer.getData().setSpawnedPet(pet);
 
-        int petLevel = sPlayer.getData().getPetLevel(pet); // Get the pet level for the player
-        // Use petLevel as needed, e.g., to adjust pet stats or behavior
+        int petLevel = sPlayer.getData().getPetLevel(pet);
 
-        new PetRunnable(player, armorStand, 3.0).runTaskTimer(OceanSkyblock.get(), 0L, 3L); // Increased update frequency
 
-        ArmorStand nametagStand = createNametag(player, pet, armorStand); // Create nametag for the pet
-        updateNametagPosition(armorStand, nametagStand); // Update nametag position
+        new PetRunnable(player, armorStand, 3.0).runTaskTimer(OceanSkyblock.get(), 0L, 3L);
+
+        ArmorStand nametagStand = createNametag(player, pet, armorStand);
+        updateNametagPosition(armorStand, nametagStand);
+
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (armorStand.isDead() || player.isDead()) {
+                    this.cancel();
+                    return;
+                }
+                facePlayer(armorStand, player);
+            }
+        }.runTaskTimer(OceanSkyblock.get(), 0L, 1L);
+    }
+
+    public void spawnPetAtLocation(Player player, Pet pet, Location location) {
+        ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+        armorStand.setVisible(false);
+        armorStand.setGravity(false);
+        armorStand.setHelmet(getSkull(pet.getSkinOwner()));
+        armorStand.setBasePlate(false);
+        armorStand.setArms(false);
+        armorStand.setSmall(true);
+        armorStand.setRemoveWhenFarAway(false);
+
+        SPlayer sPlayer = getSPlayer(player);
+        sPlayer.getData().setSpawnedPet(pet);
+
+        int petLevel = sPlayer.getData().getPetLevel(pet);
+
+
+        new PetRunnable(player, armorStand, 3.0).runTaskTimer(OceanSkyblock.get(), 0L, 3L);
+
+        ArmorStand nametagStand = createNametag(player, pet, armorStand);
+        updateNametagPosition(armorStand, nametagStand);
+
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (armorStand.isDead() || player.isDead()) {
+                    this.cancel();
+                    return;
+                }
+                facePlayer(armorStand, player);
+            }
+        }.runTaskTimer(OceanSkyblock.get(), 0L, 1L);
+    }
+
+    public void removePet(Pet pet) {
+
     }
 
     private ItemStack getSkull(String owner) {
@@ -70,7 +123,7 @@ public class PetManager {
         return skull;
     }
 
-    private SPlayer getSPlayer(Player player) {
+    public SPlayer getSPlayer(Player player) {
         return Skyblock.get().getPlayers().get(player.getUniqueId());
     }
 
@@ -82,7 +135,7 @@ public class PetManager {
                 .replace("{level}", String.valueOf(getSPlayer(player).getData().getPetLevel(pet)))
                 .replace("{player}", player.getName());
 
-        nametag = CC.color(nametag); // Apply color codes
+        nametag = CC.color(nametag);
 
         ArmorStand nametagStand = (ArmorStand) petArmorStand.getWorld().spawnEntity(petArmorStand.getLocation().add(0, 0.5, 0), EntityType.ARMOR_STAND);
         nametagStand.setCustomName(nametag);
@@ -103,5 +156,14 @@ public class PetManager {
             }
             nametagStand.teleport(petArmorStand.getLocation().add(0, 1, 0));
         }, 0L, 1L);
+    }
+
+    private void facePlayer(ArmorStand armorStand, Player player) {
+        double deltaX = player.getLocation().getX() - armorStand.getLocation().getX();
+        double deltaZ = player.getLocation().getZ() - armorStand.getLocation().getZ();
+        float yaw = (float) Math.toDegrees(Math.atan2(deltaZ, deltaX)) - 90;
+        Location location = armorStand.getLocation();
+        location.setYaw(yaw);
+        armorStand.teleport(location);
     }
 }

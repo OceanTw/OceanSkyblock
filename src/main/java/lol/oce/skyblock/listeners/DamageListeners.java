@@ -1,6 +1,5 @@
 package lol.oce.skyblock.listeners;
 
-import lol.oce.skyblock.OceanSkyblock;
 import lol.oce.skyblock.Skyblock;
 import lol.oce.skyblock.players.SPlayer;
 import org.bukkit.entity.Player;

@@ -23,47 +23,47 @@ public class PetAdminCommand implements CommandExecutor {
             commandSender.sendMessage(CC.color("&b&lPet Admin Command Help"));
             commandSender.sendMessage(CC.color("&7&m-------------------------------------"));
             commandSender.sendMessage(CC.color("&b/pet list &7- &fList all available pets"));
-            commandSender.sendMessage(CC.color("&b/pet give <player> <pet> &7- &fGive a player a pet"));
-            commandSender.sendMessage(CC.color("&b/pet remove <player> <pet> &7- &fRemove a pet from a player"));
+            commandSender.sendMessage(CC.color("&b/pet give <player> <pet-key> &7- &fGive a player a pet"));
+            commandSender.sendMessage(CC.color("&b/pet remove <player> <pet-key> &7- &fRemove a pet from a player"));
             commandSender.sendMessage(CC.color("&7&m-------------------------------------"));
             return true;
         }
         if (strings[0].equalsIgnoreCase("list")) {
             for (Pet pet : Skyblock.get().getPets()) {
-                commandSender.sendMessage(CC.color("&7- &b" + pet.getName()));
+                commandSender.sendMessage(CC.color("&7- &b" + pet.getKey()));
             }
             return true;
         }
         if (strings[0].equalsIgnoreCase("give")) {
             if (strings.length != 3) {
-                commandSender.sendMessage(CC.color("&cUsage: /pet give <player> <pet>"));
+                commandSender.sendMessage(CC.color("&cUsage: /pet give <player> <pet-key>"));
                 return true;
             }
             if (OceanSkyblock.get().getServer().getPlayer(strings[1]) == null) {
                 commandSender.sendMessage(CC.color("&cPlayer not found!"));
                 return true;
             }
-            if (Skyblock.get().getPets().stream().noneMatch(pet -> pet.getName().equalsIgnoreCase(strings[2]))) {
+            if (Skyblock.get().getPets().stream().noneMatch(pet -> pet.getKey().equalsIgnoreCase(strings[2]))) {
                 commandSender.sendMessage(CC.color("&cPet not found!"));
                 return true;
             }
-            sPlayer.getData().getPets().add(Skyblock.get().getPets().stream().filter(pet -> pet.getName().equalsIgnoreCase(strings[2])).findFirst().get());
+            sPlayer.getData().getPets().add(Skyblock.get().getPets().stream().filter(pet -> pet.getKey().equalsIgnoreCase(strings[2])).findFirst().get());
             return true;
         }
         if (strings[0].equalsIgnoreCase("remove")) {
             if (strings.length != 3) {
-                commandSender.sendMessage(CC.color("&cUsage: /pet remove <player> <pet>"));
+                commandSender.sendMessage(CC.color("&cUsage: /pet remove <player> <pet-key>"));
                 return true;
             }
             if (OceanSkyblock.get().getServer().getPlayer(strings[1]) == null) {
                 commandSender.sendMessage(CC.color("&cPlayer not found!"));
                 return true;
             }
-            if (Skyblock.get().getPets().stream().noneMatch(pet -> pet.getName().equalsIgnoreCase(strings[2]))) {
+            if (Skyblock.get().getPets().stream().noneMatch(pet -> pet.getKey().equalsIgnoreCase(strings[2]))) {
                 commandSender.sendMessage(CC.color("&cPet not found!"));
                 return true;
             }
-            sPlayer.getData().getPets().remove(Skyblock.get().getPets().stream().filter(pet -> pet.getName().equalsIgnoreCase(strings[2])).findFirst().get());
+            sPlayer.getData().getPets().remove(Skyblock.get().getPets().stream().filter(pet -> pet.getKey().equalsIgnoreCase(strings[2])).findFirst().get());
             return true;
         }
         return false;

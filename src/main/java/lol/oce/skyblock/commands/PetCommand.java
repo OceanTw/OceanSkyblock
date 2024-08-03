@@ -5,11 +5,12 @@ import lol.oce.skyblock.pets.Pet;
 import lol.oce.skyblock.pets.PetManager;
 import lol.oce.skyblock.players.SPlayer;
 import lol.oce.skyblock.utils.CC;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Arrays;
 
 public class PetCommand implements CommandExecutor {
 
@@ -42,19 +43,28 @@ public class PetCommand implements CommandExecutor {
 
         if (strings[0].equalsIgnoreCase("list")) {
             for (Pet pet : sPlayer.getData().getPets()) {
-                commandSender.sendMessage(CC.color("&7- &b" + pet.getName()));
+                int petLevel = sPlayer.getData().getPetLevel(pet);
+                String rarityColor = pet.getRarity().getColor();
+                commandSender.sendMessage(CC.color("&7- " + rarityColor + pet.getName() + " &7(Level: " + petLevel + ", Rarity: " + pet.getRarity().name() + ")"));
             }
             return true;
         }
 
         if (strings[0].equalsIgnoreCase("spawn")) {
-            if (strings.length != 2) {
+            if (strings.length < 2) {
                 commandSender.sendMessage(CC.color("&cUsage: /pet spawn <pet>"));
                 return true;
             }
 
+            if (sPlayer.getData().getSpawnedPet() != null) {
+                commandSender.sendMessage(CC.color("&cYou already have a pet spawned!"));
+                return true;
+            }
+
+            String petName = String.join(" ", Arrays.copyOfRange(strings, 1, strings.length));
+
             Pet pet = sPlayer.getData().getPets().stream()
-                    .filter(p -> p.getName().equalsIgnoreCase(strings[1]))
+                    .filter(p -> p.getName().equalsIgnoreCase(petName))
                     .findFirst()
                     .orElse(null);
 

@@ -1,6 +1,5 @@
 package lol.oce.skyblock.configs;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import lol.oce.skyblock.OceanSkyblock;
 import lol.oce.skyblock.utils.ConfigFile;
 import lombok.Getter;

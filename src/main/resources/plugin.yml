@@ -4,3 +4,6 @@ main: lol.oce.skyblock.OceanSkyblock
 commands:
   pet:
   petadmin:
+  customitem:
+    aliases: [ci]
+  ability:

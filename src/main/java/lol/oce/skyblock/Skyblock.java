@@ -1,7 +1,6 @@
 package lol.oce.skyblock;
 
 import lol.oce.skyblock.pets.Pet;
-import lol.oce.skyblock.pets.PetManager;
 import lol.oce.skyblock.players.SPlayer;
 import lombok.Getter;
 

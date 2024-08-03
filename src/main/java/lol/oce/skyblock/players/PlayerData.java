@@ -17,7 +17,7 @@ public class PlayerData {
     private final Stats stats;
     private final List<Pet> pets;
     private Pet spawnedPet;
-    private final Map<Pet, Integer> petLevels = new HashMap<>(); // Map to store pet levels
+    private final Map<Pet, Integer> petLevels = new HashMap<>();
 
     public void levelUpPet(Pet pet) {
         petLevels.put(pet, petLevels.getOrDefault(pet, 1) + 1);

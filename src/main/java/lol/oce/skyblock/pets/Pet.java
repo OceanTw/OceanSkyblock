@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class Pet {
 
+    private final String key;
     private final String name;
     private final String category;
     private final PetStats stats;

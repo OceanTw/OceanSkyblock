@@ -1,6 +1,5 @@
 package lol.oce.skyblock.commands;
 
-import lol.oce.skyblock.OceanSkyblock;
 import lol.oce.skyblock.Skyblock;
 import lol.oce.skyblock.players.SPlayer;
 import org.bukkit.command.Command;

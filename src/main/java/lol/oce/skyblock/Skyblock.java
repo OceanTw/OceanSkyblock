@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @Getter
 public class Skyblock {
-
     private static Skyblock instance;
 
     public List<Pet> pets = new ArrayList<>();

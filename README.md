@@ -1,4 +1,7 @@
-
+# NO LONGER UPDATING
+I am rewriting this plugin and make it more like an API instead of a plugin,
+because if I remake everything in Hypixel Skyblock its gonna take too much time
+For more information, join https://discord.gg/KWVeXZNTmA
 # 🛡️ OceanSkyblock
 
 A Skyblock plugin that replicates a big server's Skyblock minigame
